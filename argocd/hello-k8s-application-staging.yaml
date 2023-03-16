@@ -12,7 +12,7 @@ spec:
     helm:
       valueFiles:
         - values-staging.yaml
-    path: helm
+    path: hello-k8s
     repoURL: https://github.com/kienle1819/K8s-CICD.git
     targetRevision: HEAD
   syncPolicy:

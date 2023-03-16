@@ -2,10 +2,11 @@ namespace:
   name: default
 
 service:
-  port: 4111
-  targetPort: 5000
-  protocol: TCP
   type: ClusterIP
+  svc:
+    http: 5000
+    # grpc: ToBeDefined
+    https: 443
 
 image:
   repository: kienle1819/hello-k8s
