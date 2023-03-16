@@ -1,0 +1,72 @@
+argo-cd:
+  crds:
+    # -- Install and upgrade CRDs
+    install: true
+    # -- Keep CRDs on chart uninstall
+    keep: true
+  controller:
+    replicas: 1
+    args:
+      # -- define the application controller `--app-resync`
+      appResyncPeriod: "30"
+      # -- define the application controller `--status-processors`
+      statusProcessors: "20"
+      # -- define the application controller `--operation-processors`
+      operationProcessors: "10"
+      # -- define the application controller `--self-heal-timeout-seconds`
+      selfHealTimeout: "3"
+      # -- define the application controller `--repo-server-timeout-seconds`
+      repoServerTimeoutSeconds: "60"
+
+  server:
+    extraArgs:
+    - --insecure
+    replicas: 1
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"        
+        cert-manager.io/cluster-issuer: letsencrypt-prod-argocd
+        kubernetes.io/tls-acme: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+      hosts:
+        - argocd.vuihoctech.com
+      paths:
+        - /
+      tls:
+        - secretName: argocd5-tls-certificate
+          hosts:
+            - argocd.vuihoctech.com
+    
+    configEnabled: true
+    config:
+      url: https://argocd.vuihoctech.com
+      exec.enabled: "true"
+      accounts.user: apiKey, login
+      repositories: |
+        - name: main-repo
+          type: git
+          url: https://github.com/kienle1819/-K8s-CICD.git
+          usernameSecret:
+            name: git-creds
+            key: username
+          passwordSecret:
+            name: git-creds
+            key: password
+        # - name: acr-charts
+        #   type: helm
+        #   enableOci: true
+        #   url: registry.gitlab.com/tonykien2012/app-demo-helmchart
+        #   username: argocd-gitlab
+        #   password: x5dtUqgitoBZQ75qicP5
+    rbacConfig:
+      policy.csv: |
+        p, role:dev, applications, sync, */*, allow
+        p, role:dev, applications, get, */*, allow
+        p, role:dev, certificates, get, *, allow
+        p, role:dev, clusters, get, *, allow
+        p, role:dev, repositories, get, *, allow
+        p, role:dev, projects, get, *, allow
+        p, role:dev, accounts, get, *, allow
+        p, role:dev, gpgkeys, get, */*, allow
+        g, user, role:dev
