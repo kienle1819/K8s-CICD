@@ -10,6 +10,6 @@ spec:
   project: default
   source:
     path: argocd/hello-k8s-manifest
-    repoURL: https://github.com/samiislam/K8s-CICD
+    repoURL: https://github.com/kienle1819/K8s-CICD.git
     targetRevision: HEAD
   syncPolicy: {}
