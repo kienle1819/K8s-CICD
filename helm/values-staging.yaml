@@ -23,19 +23,16 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod-argocd"
     kubernetes.io/ingress.class: "nginx"
-spec:
-  tls:
+hosts:
+  - host: hello-k8s.vuihoctech.com
+    paths:
+      - path: /
+        pathType: ImplementationSpecific
+        serviceName: hello-k8s
+        servicePort: 5000
+tls:
   - hosts:
-    - hello-k8s.vuihoctech.com
-    secretName: hello-k8s-tls
-  rules:
-    - host: hello-k8s.vuihoctech.com
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: hello-k8s
-                port:
-                  number: 5000
+      - hello-k8s.vuihoctech.com
+    secretName: hello-k8s-ingress
+
+
