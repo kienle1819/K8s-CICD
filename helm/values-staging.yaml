@@ -17,22 +17,23 @@ resources:
   limits:
     cpu: 500m
     memory: 128Mi
+
 ingress:
   enabled: true
   className: ""
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod-argocd"
     kubernetes.io/ingress.class: "nginx"
-hosts:
-  - host: hello-k8s.vuihoctech.com
-    paths:
-      - path: /
-        pathType: ImplementationSpecific
-        serviceName: hello-k8s
-        servicePort: 5000
-tls:
-  - hosts:
-      - hello-k8s.vuihoctech.com
-    secretName: hello-k8s-ingress
+  hosts:
+    - host: hello-k8s.vuihoctech.com
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+          serviceName: hello-k8s
+          servicePort: 5000
+  tls:
+    - hosts:
+        - hello-k8s.vuihoctech.com
+      secretName: hello-k8s-ingress
 
 
