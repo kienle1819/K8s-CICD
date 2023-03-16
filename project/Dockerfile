@@ -1,5 +1,5 @@
 FROM python:3.8
-LABEL maintainer="Sami Islam"
+LABEL maintainer="KienLe TV"
 
 COPY . /app
 WORKDIR /app
