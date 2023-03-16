@@ -24,6 +24,8 @@ spec:
       - image: tonykien2012/hello-k8s:3.0 
         imagePullPolicy: Always
         name: hello-k8s
+        ports:
+        - containerPort: 5000
         resources:
           requests:
             cpu: 50m
