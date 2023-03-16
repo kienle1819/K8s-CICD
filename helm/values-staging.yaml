@@ -2,7 +2,7 @@ namespace:
   name: staging
 
 service:
-  port: 7111
+  port: 5000
 
 image:
   tag: '3.0'

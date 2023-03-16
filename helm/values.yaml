@@ -23,3 +23,26 @@ resources:
     memory: 128Mi
 
 containerPort: 5000
+
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod-argocd"
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    - hello-k8s.vuihoctech.com
+    secretName: hello-k8s-tls
+  rules:
+    - host: hello-k8s.vuihoctech.com
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: hello-k8s
+                port:
+                  number: 5000
