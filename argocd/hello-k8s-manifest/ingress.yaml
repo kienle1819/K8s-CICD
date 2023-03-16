@@ -20,4 +20,4 @@ spec:
               service:
                 name: hello-k8s
                 port:
-                  number: 80
+                  number: 5000
