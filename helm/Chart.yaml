@@ -1,0 +1,9 @@
+apiVersion: v1
+name: hello-k8s
+description: Install hello-k8s
+keywords:
+  - hello-k8s
+version: 1.0.0
+maintainers:
+  - name: sislam
+    email: myemail@hotmail.com

@@ -1,0 +1,25 @@
+namespace:
+  name: default
+
+service:
+  port: 4111
+  targetPort: 5000
+  protocol: TCP
+  type: ClusterIP
+
+image:
+  repository: samiislam/hello-k8s
+  tag: '1.0'
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 64Mi
+  limits:
+    cpu: 500m
+    memory: 128Mi
+
+containerPort: 5000

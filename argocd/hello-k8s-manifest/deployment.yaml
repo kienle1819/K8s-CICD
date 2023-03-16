@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-k8s
+  name: hello-k8s
+  namespace: default 
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hello-k8s
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: hello-k8s
+    spec:
+      containers:
+      - image: samiislam/hello-k8s:1.0 
+        imagePullPolicy: Always
+        name: hello-k8s
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi

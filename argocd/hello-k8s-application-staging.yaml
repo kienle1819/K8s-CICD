@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-k8s-staging
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+        - values-staging.yaml
+    path: helm
+    repoURL: https://github.com/samiislam/K8s-CICD
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
