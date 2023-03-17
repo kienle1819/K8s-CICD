@@ -21,7 +21,7 @@ spec:
         app: hello-k8s
     spec:
       containers:
-      - image: tonykien2012/hello-k8s:3.0 
+      - image: tonykien2012/hello-k8s:4.0 
         imagePullPolicy: Always
         name: hello-k8s
         ports:
