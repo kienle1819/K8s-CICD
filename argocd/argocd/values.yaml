@@ -53,12 +53,7 @@ argo-cd:
           passwordSecret:
             name: git-creds
             key: password
-        # - name: acr-charts
-        #   type: helm
-        #   enableOci: true
-        #   url: registry.gitlab.com/tonykien2012/app-demo-helmchart
-        #   username: argocd-gitlab
-        #   password: x5dtUqgitoBZQ75qicP5
+        
     rbacConfig:
       policy.csv: |
         p, role:dev, applications, sync, */*, allow
