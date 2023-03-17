@@ -12,6 +12,6 @@ spec:
     helm:
       valueFiles:
         - values-prod.yaml
-    path: helm
+    path: hello-k8s
     repoURL: https://github.com/kienle1819/K8s-CICD.git
     targetRevision: HEAD
